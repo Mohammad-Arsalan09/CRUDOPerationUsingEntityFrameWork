@@ -1,0 +1,98 @@
+﻿@model IEnumerable<MohaliAssignment.Models.Settings>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/css/site.css" rel="stylesheet" />
+}
+
+
+
+<button type="button" class="btn btn-primary" id="btnAddSetting" data-toggle="modal" data-target="#modal" data-url="@Url.Action("Create")">Add Setting</button>
+<table class="table"> 
+    <thead>
+        <div id="modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Setting</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="add" method="post">
+                            <input type="hidden" name="id" />
+                            <input type="text" name="key" placeholder="Key" />
+                            <input type="text" name="Value" placeholder="Value" />
+                            <input type="text" name="Value2" placeholder="Value 2" />
+                            <input type="text" name="Description" placeholder="Description" />
+                            <input type="datetime" name="Created" placeholder="Created" />
+                            <input type="datetime" name="Last_Modified" placeholder="Last_Modified" />
+                            <input type="checkbox" name="IsDeleted" placeholder="IsDeleted" />
+                            <button type="submit" class="btn btn-primary" asp-action="Create">Create</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @*<button type="button" class="btn btn-primary" id="btnEditCustomer" data-toggle="modal" data-target="#modal">Edit Customer</button>*@
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Key)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Value)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Value2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastModified)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDeleted)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Key)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Created)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastModified)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsDeleted)
+                </td>
+                @*<td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>*@
+            </tr>
+        }
+    </tbody>
+</table>
